@@ -34,10 +34,22 @@ def process_data(data):
       item["revenue"] = item_revenue
       max_revenue = item
     # TODO: also handle max sales
+    if item["total_sales"] > max_sales["total_sales"]:
+      max_sales = item
     # TODO: also handle most popular car_year
+    if item["total_sales"] not in most_popular_year.keys():
+      most_popular_year[item["car"]["car_year"]] = item["total_sales"]
+    else:
+      most_popular_year[item["car"]["car_year"]] += item["total_sales"]                   
+    
+    all_values = most_popular_years.values()
+    max_value = max(all_values)
+    max_key = max(most_popular_year, key=most_popular_year.get)
     
     summary = [
       "The {} generated the most revenue: ${}".format(format_car(max_revenue["car"]), max_revenue["revenue"])
+      "The {} had the most sales: ${}".format(max_sales["car"]["car_model"], max_sales["total_sales"]),
+      "The most popular year was {} with {} sales."format(max_key, max_value)
     ]
     
 def cars_dict_to_table(car_data):
