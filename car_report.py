@@ -3,7 +3,7 @@
 import json
 import locale
 import sys
-from report_pdf_generator import generate as report_generate
+from report_pdf_generator import generate as pdf_generate
 from report_pdf_emailer import generate as email_generate
 from report_pdf_emailer import send as email_send
 
@@ -66,6 +66,7 @@ def main(argv):
   formatted_summary = '<br/>'.join(summary)
   print(formatted_summary)
   # TODO: turn this into a PDF report
+  pdf_generate("/tmp/cars.pdf", "Cars report", formatted_summary, cars_dict_to_table(data))
   # TODO: send the PDF report as an email attachment
   
 if __name__ == "__main__":
