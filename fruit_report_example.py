@@ -19,5 +19,5 @@ sender = "automation@example.com"
 receiver = "{}@example.com".format(os.environ.get('USER'))
 subject = "List of Fruits"
 body = "Hi\n\nI'm sending an attachment with all my fruit."
-message = report_pdf_emailer.generate(sender, receiveer, subject, body, "/tmp/report.pdf")
+message = report_pdf_emailer.generate(sender, receiver, subject, body, "/tmp/report.pdf")
 report_pdf_emailer.send(message)
