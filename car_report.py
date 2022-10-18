@@ -3,6 +3,9 @@
 import json
 import locale
 import sys
+from report_pdf_generator import generate as report_generate
+from report_pdf_emailer import generate as email_generate
+from report_pdf_emailer import send as email_send
 
 def load_data(filename):
   """Loads the contents of filename as a JSON file."""
