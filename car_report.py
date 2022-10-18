@@ -49,7 +49,7 @@ def process_data(data):
     summary = [
       "The {} generated the most revenue: ${}".format(format_car(max_revenue["car"]), max_revenue["revenue"]),
       "The {} had the most sales: ${}".format(max_sales["car"]["car_model"], max_sales["total_sales"]),
-      "The most popular year was {} with {} sales."format(max_key, max_value)
+      "The most popular year was {} with {} sales".format(max_key, max_value)
     ]
     
 def cars_dict_to_table(car_data):
