@@ -42,7 +42,7 @@ def process_data(data):
     else:
       most_popular_year[item["car"]["car_year"]] += item["total_sales"]                   
     
-    all_values = most_popular_years.values()
+    all_values = most_popular_year.values()
     max_value = max(all_values)
     max_key = max(most_popular_year, key=most_popular_year.get)
     
