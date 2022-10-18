@@ -68,8 +68,8 @@ def main(argv):
   # TODO: turn this into a PDF report
   pdf_generate("/tmp/cars.pdf", "Cars report", formatted_summary, cars_dict_to_table(data))
   # TODO: send the PDF report as an email attachment
-  sender = "{}@example.com".format(os.environ.get('USER'))
-  receiver = "automation@example.com"
+  sender = "automation@example.com"
+  receiver = "{}@example.com".format(os.environ.get('USER'))
   subject = "Sales summary for last month"
   body = formatted_summary
   message = email_generate(sender, receiver, subject, body, "/tmp/cars.pdf")
