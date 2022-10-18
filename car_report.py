@@ -72,7 +72,7 @@ def main(argv):
   receiver = "automation@example.com"
   subject = "Sales summary for last month"
   body = formatted_summary
-  message = email_generate(sender, receiver, subject, body, "tmp/cars/pdf")
+  message = email_generate(sender, receiver, subject, body, "/tmp/cars.pdf")
   email_send(message)
   
 if __name__ == "__main__":
