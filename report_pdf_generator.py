@@ -7,6 +7,7 @@ from reportlab.lib import colors
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.charts.piecharts import Pie
 from reportlab.lib.units import inch
+from car_report import format_car
 
 def generate(filename, title, additional_info, table_data, sorted_data):
     styles = getSampleStyleSheet()
@@ -19,8 +20,9 @@ def generate(filename, title, additional_info, table_data, sorted_data):
     report_pie.data = []
     report_pie.labels = []
     for item in sorted_data:
+        car_info = format_car(sorted_data)
         report_pie.data.append(item["total_sales"])
-        report_pie.labels.append(item["car"])
+        report_pie.labels.append(car_info)
     print(report_pie.labels)
     print(report_pie.data)
     report_chart = Drawing()
