@@ -7,6 +7,8 @@ import sys
 from report_pdf_generator import generate as pdf_generate
 from report_pdf_emailer import generate as email_generate
 from report_pdf_emailer import send as email_send
+from reportlab.graphics.shapes import Drawing
+from reportlab.graphics.charts.piecharts import Pie
 
 def load_data(filename):
   """Loads the contents of filename as a JSON file."""
@@ -60,6 +62,21 @@ def cars_dict_to_table(car_data):
     table_data.append([item["id"], format_car(item["car"]), item["price"], item["total_sales"]])
   return table_data
 
+def cars_dict_to_piechart(car_data):
+  """Turns the data in car_data into a list of lists."""
+  report_pie = Pie(width=3*inch, height=3*inch)
+  report_pie.data = []
+  report_pie.labels = []
+  for item in sorted(car_data, key=lambda i:i['total_sales'])
+    report_pie.data.append(item["total_sales"])
+    report_pie.labels.append(item["car"])
+  print(report_pie.labels)
+  print(report_pie.data)
+  report_chart = Drawing()
+  report_chart.add(report_pie)
+  return report_chart
+  
+
 def main(argv):
   """Process the JSON data and generate a full report out of it."""
   data = load_data("car_sales.json")
@@ -68,7 +85,7 @@ def main(argv):
   email_formatted_summary = '\n'.join(summary)
   print(summary)
   # TODO: turn this into a PDF report
-  pdf_generate("/tmp/cars.pdf", "Cars report", pdf_formatted_summary, cars_dict_to_table(data))
+  pdf_generate("/tmp/cars.pdf", "Cars report", pdf_formatted_summary, cars_dict_to_table(data), cars_dict_to_piechart(data))
   # TODO: send the PDF report as an email attachment
   sender = "automation@example.com"
   receiver = "{}@example.com".format(os.environ.get('USER'))
