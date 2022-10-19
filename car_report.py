@@ -67,7 +67,7 @@ def cars_dict_to_piechart(car_data):
   report_pie = Pie(width=3*inch, height=3*inch)
   report_pie.data = []
   report_pie.labels = []
-  for item in sorted(car_data, key=lambda i:i['total_sales'])
+  for item in sorted(car_data, key=lambda i:i['total_sales']):
     report_pie.data.append(item["total_sales"])
     report_pie.labels.append(item["car"])
   print(report_pie.labels)
