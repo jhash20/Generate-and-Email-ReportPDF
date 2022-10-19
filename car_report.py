@@ -49,7 +49,7 @@ def process_data(data):
     
     summary = [
       "The {} generated the most revenue: ${}".format(format_car(max_revenue["car"]), max_revenue["revenue"]),
-      "The {} had the most sales: ${}".format(max_sales["car"]["car_model"], max_sales["total_sales"]),
+      "The {} had the most sales: {}".format(max_sales["car"]["car_model"], max_sales["total_sales"]),
       "The most popular year was {} with {} sales".format(max_key, max_value)
     ]
     
@@ -64,15 +64,16 @@ def main(argv):
   """Process the JSON data and generate a full report out of it."""
   data = load_data("car_sales.json")
   summary = process_data(data)
-  formatted_summary = '<br/>'.join(summary)
-  print(formatted_summary)
+  pdf_formatted_summary = '<br/>'.join(summary)
+  email_formatted_summary = '\n'.join(summary)
+  print(summary)
   # TODO: turn this into a PDF report
-  pdf_generate("/tmp/cars.pdf", "Cars report", formatted_summary, cars_dict_to_table(data))
+  pdf_generate("/tmp/cars.pdf", "Cars report", pdf_formatted_summary, cars_dict_to_table(data))
   # TODO: send the PDF report as an email attachment
   sender = "automation@example.com"
   receiver = "{}@example.com".format(os.environ.get('USER'))
   subject = "Sales summary for last month"
-  body = formatted_summary
+  body = email_formatted_summary
   message = email_generate(sender, receiver, subject, body, "/tmp/cars.pdf")
   email_send(message)
   
