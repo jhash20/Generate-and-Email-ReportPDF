@@ -38,7 +38,7 @@ def process_data(data):
     if item["total_sales"] > max_sales["total_sales"]:
       max_sales = item
     # TODO: also handle most popular car_year
-    if item["total_sales"] not in most_popular_year.keys():
+    if item["car"]["car_year"] not in most_popular_year.keys():
       most_popular_year[item["car"]["car_year"]] = item["total_sales"]
     else:
       most_popular_year[item["car"]["car_year"]] += item["total_sales"]                   
