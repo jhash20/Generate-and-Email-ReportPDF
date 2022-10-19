@@ -6,6 +6,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.charts.piecharts import Pie
+from reportlab.lib.units import inch
 
 def generate(filename, title, additional_info, table_data, sorted_data):
     styles = getSampleStyleSheet()
@@ -14,7 +15,7 @@ def generate(filename, title, additional_info, table_data, sorted_data):
     table_style = [('GRID', (0,0), (-1.-1), 1, colors.black), ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'), ('ALIGN', (0,0), (-1,-1) 'CENTER')]
     report_table = Table(data = table_data, style = table_style, hAlighn = "LEFT")
     # Creates a Pie Chart
-    report_pie = Pie(wide=3*inch, height=3*inch)
+    report_pie = Pie(width=3*inch, height=3*inch)
     report_pie.data = []
     report_pie.labels = []
     for item in sorted_data:
